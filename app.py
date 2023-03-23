@@ -1,6 +1,8 @@
 #━━━━━━━━━❮Bibliotecas❯━━━━━━━━━
 import unicodedata
 import time
+import pandas as pd
+import requests
 from flask import Flask, jsonify, request, render_template
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
@@ -17,13 +19,7 @@ app = Flask(__name__)
 #━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 alunos = []
-
-#━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-# Dicionário para armazenar a lista de presença
-#━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-
-presenca = []
-
+presenca =[]
 #━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 # Função para substituir caracteres especiais por equivalentes sem acentos
 #━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━

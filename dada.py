@@ -11,47 +11,14 @@ from email import encoders
 from mimetypes import add_type
 #━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-#━━━━━━━━❮envio do Email❯━━━━━━━━━
-def enviar_email():
-    time.sleep(1)
-    body = f"""
-    Teste de cria
-    """
+url = "file:///C:/Users/pytho/Documents/GitHub/API_Duo/templates/index.html"
+response = requests.get(url)
 
-    sender = 'settlinksp@gmail.com'
-    password = 'jmolibocyyhmgqxv'
-    receiver = 'brainwavedev.ai@gmail.com'
+# Verifica se a requisição foi bem sucedida
+if response.status_code == 200:
+    html = response.text
 
+    dfs = pd.read_html(html)
+    df = dfs[0]
 
-    message = MIMEMultipart()
-    message['From'] = sender
-    message['To'] = receiver
-    message['Subject'] = 'teste de api tchelogx'
-
-    message.attach(MIMEText(body, 'plain'))
-
-    pdfname = f'Secure_{relt}.pdf'
-
-
-    binary_pdf = open(pdfname, 'rb')
-
-    payload = MIMEBase('application', 'octate-stream', Name=pdfname)
-    payload.set_payload((binary_pdf).read())
-
-    encoders.encode_base64(payload)
-
-    payload.add_header('Content-Decomposition', 'attachment', filename=pdfname)
-    message.attach(payload)
-
-    session = smtplib.SMTP('smtp.gmail.com', 587)
-
-    session.starttls()
-
-    session.login(sender, password)
-
-    text = message.as_string()
-    session.sendmail(sender, receiver, text)
-    session.quit()
-    print('200')
-    time.sleep(1)
-#━━━━━━━━━━━━━━━❮◆❯━━━━━━━━━━━━━━━━
+    df.to_excel("dados.xlsx", index=False)
