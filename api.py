@@ -1,5 +1,5 @@
 #━━━━━━━━━❮Bibliotecas❯━━━━━━━━━
-from flask import Flask, jsonify, request
+from flask import Flask, jsonify, request, render_template
 import unicodedata
 #━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
@@ -54,3 +54,14 @@ def get_presenca():
 
 if __name__ == '__main__':
     app.run(debug=True)
+
+#━━━━━━━━━━━━━━❮◆❯━━━━━━━━━━━━━━
+@app.route('/test', methods=['GET', 'POST'])
+def home():
+    pred = None
+    if request.method == 'POST':
+        nome = request.form.get('Nome')
+        presenca = request.form.get('Presença')
+    return render_template('index.html')
+#━━━━━━━━━━━━━━❮◆❯━━━━━━━━━━━━━━
+print('')
