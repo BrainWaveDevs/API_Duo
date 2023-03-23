@@ -1,6 +1,12 @@
 #━━━━━━━━━❮Bibliotecas❯━━━━━━━━━
-from flask import Flask, jsonify, request, render_template
 import unicodedata
+import time
+from flask import Flask, jsonify, request, render_template
+from email.mime.multipart import MIMEMultipart
+from email.mime.text import MIMEText
+from email.mime.base import MIMEBase
+from email import encoders
+from mimetypes import add_type
 #━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 
@@ -10,13 +16,13 @@ app = Flask(__name__)
 # Lista integrada com alguns alunos
 #━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-alunos = ['Joao', 'Maria', 'Pedro', 'Ana']
+alunos = []
 
 #━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 # Dicionário para armazenar a lista de presença
 #━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-presenca = {}
+presenca = []
 
 #━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 # Função para substituir caracteres especiais por equivalentes sem acentos
@@ -52,16 +58,14 @@ def update_presenca():
 def get_presenca():
     return jsonify(presenca)
 
-if __name__ == '__main__':
-    app.run(debug=True)
-
 #━━━━━━━━━━━━━━❮◆❯━━━━━━━━━━━━━━
 @app.route('/test', methods=['GET', 'POST'])
 def home():
-    pred = None
     if request.method == 'POST':
         nome = request.form.get('Nome')
-        presenca = request.form.get('Presença')
+        pres = request.form.get('Presença')
     return render_template('index.html')
 #━━━━━━━━━━━━━━❮◆❯━━━━━━━━━━━━━━
-print('')
+
+if __name__ == '__main__':
+    app.run(debug=True)
