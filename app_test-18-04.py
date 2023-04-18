@@ -24,6 +24,10 @@ class Curso:
         self.nome = nome
         self.codigo = codigo
 
+@app.route('/hello', methods=['GET'])
+def HelloWorld():
+    return 'Hello World'
+
 # Rota para consultar todos os alunos
 @app.route('/alunos', methods=['GET'])
 def get_alunos():
@@ -152,6 +156,8 @@ def gerar_relatorio_presenca():
         curso = cursos_table.get(doc_id=curso_id)
         if aluno and curso:
             data.append({'aluno_id': aluno_id, 'aluno_nome': aluno['nome'], 'curso_nome': curso['nome']})
+
+
     
     workbook = Workbook()
     sheet = workbook.active
@@ -173,3 +179,5 @@ def gerar_relatorio_presenca():
     # Enviando o arquivo do relatório como resposta para download
     return send_file(filename, as_attachment=True)
 
+if __name__ == '__main__':
+     app.run(debug=True)
