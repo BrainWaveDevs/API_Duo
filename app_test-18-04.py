@@ -1,5 +1,5 @@
 #━━━━━━━━━❮Bibliotecas❯━━━━━━━━━
-from flask import Flask, jsonify, request, send_file
+from flask import Flask, jsonify, request, send_file, render_template
 from tinydb import TinyDB, Query
 from openpyxl import Workbook
 #━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
@@ -46,6 +46,10 @@ class Curso:
 @app.route('/hello', methods=['GET'])
 def HelloWorld():
     return 'Hello World'
+
+@app.route('/', methods=['GET', 'POST'])
+def home():
+    return render_template('index.html')
 #━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 # Rota para consultar todos os alunos
