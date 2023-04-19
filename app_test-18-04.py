@@ -79,9 +79,6 @@ def add_aluno():
     nome = data['nome']
     idade = data['idade']
     curso_id = data['curso_id']
-
-    if request.method == 'POST':
-        curso_id =str(request.form['curso_id'])
     
     curso = cursos_table.get(doc_id=curso_id)
     if not curso:
@@ -227,3 +224,5 @@ def gerar_relatorio_presenca():
 #━━━━━━━━━━━━━━❮◆❯━━━━━━━━━━━━━━
 if __name__ == '__main__':
      app.run(debug=True)
+
+
