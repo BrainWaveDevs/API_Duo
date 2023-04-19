@@ -15,6 +15,24 @@
     font-family: Arial, Helvetica, sans-serif;
     background-image: linear-gradient(45deg, #7300ff, #51E8F4);
     }
+    
+    h1{
+        text-align: center;
+    }
+
+    h2{
+    color:  #000000;
+    font-size: 1.5em;
+    margin-top: 0;
+    font-size: 1.2em;
+    line-height: 1.5;
+    }
+
+    #centralizar_botao{
+        align-items: center;
+        margin-left: 1%;
+        text-align: center;
+    }
     </style>
     
 </body>
@@ -23,44 +41,50 @@
 <h2>Consultar todos os alunos</h2>
 <button onclick="getAlunos()">Consultar</button>
 <p id="alunos"></p>
+<br>
 
 <!-- CONSULTA DE ALUNO (PRIMEIRA ROTA) -->
 <h2>Consultar aluno por ID</h2>
 <label for="alunoId">ID do Aluno:</label>
-<input type="number" id="alunoId">
+<input id= "centralizar_botao" type="number" id="alunoId">
 <button onclick="getAluno()">Consultar</button>
 <p id="aluno"></p>
+<br>
 
 <!-- CADASTRO DE ALUNO (SEGUNDA ROTA) -->
 <h2>Cadastrar novo aluno</h2>
 <label for="nome">Nome:</label>
-<input type="text" id="nome">
+<input id= "centralizar_botao" type="text" id="nome">
 <br>
 <label for="idade">Idade:</label>
-<input type="number" id="idade">
+<input id= "centralizar_botao" type="number" id="idade">
 <br>
 <label for="cursoId">ID do Curso:</label>
-<input type="number" id="cursoId">
+<input id= "centralizar_botao" type="number" id="cursoId">
 <button onclick="addAluno()">Cadastrar</button>
+<br>
 
 <!-- ATUALIZAR ALUNO POR ID (TERCEIRA ROTA) -->
 <h2>Atualizar aluno por ID</h2>
 <label for="alunoIdUpdate">ID do Aluno:</label>
-<input type="number" id="alunoIdUpdate">
+<input id= "centralizar_botao" type="number" id="alunoIdUpdate">
 <br>
 <label for="nomeUpdate">Nome:</label>
-<input type="text" id="nomeUpdate">
+<input id= "centralizar_botao" type="text" id="nomeUpdate">
 <br>
 <label for="idadeUpdate">Idade:</label>
-<input type="number" id="idadeUpdate">
+<input id= "centralizar_botao" type="number" id="idadeUpdate">
 <br>
 <label for="cursoIdUpdate">ID do Curso:</label>
-<input type="number" id="cursoIdUpdate">
+<input id= "centralizar_botao" type="number" id="cursoIdUpdate">
 <button onclick="updateAluno()">Atualizar</button>
+<br>
 
 <!-- EXCLUIR ALUNO POR ID (QUARTA ROTA) -->
 <h2>Excluir aluno por ID</h2>
 <label for="alunoIdDelete">ID do Aluno:</label>
-<input type="number" id="alunoIdDelete">
+<input id= "centralizar_botao" type="number" id="alunoIdDelete">
 <button onclick="deleteAluno()">Excluir</button>
+<br>
+
 </html>
