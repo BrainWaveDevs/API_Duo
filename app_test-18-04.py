@@ -43,10 +43,13 @@ class Curso:
 
 
 #━━━━━━━━━━━━━━❮ROTAS❯━━━━━━━━━━━━━━
+
+# Rota para TESTE HELLO WORLD
 @app.route('/hello', methods=['GET'])
 def HelloWorld():
     return 'Hello World'
 
+# Rota para a página inicial
 @app.route('/', methods=['GET', 'POST'])
 def home():
     return render_template('index.html')
@@ -59,7 +62,7 @@ def get_alunos():
     return jsonify(alunos)
 #━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-# Rota para consultar um aluno por ID
+# Rota para consultar um aluno por ID (ROTA 1)
 @app.route('/alunos/<int:aluno_id>', methods=['GET'])
 def get_aluno(aluno_id):
     aluno = alunos_table.get(doc_id=aluno_id)
@@ -69,13 +72,16 @@ def get_aluno(aluno_id):
         return jsonify({'error': 'Aluno não encontrado'}), 404
 #━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-# Rota para cadastrar um novo aluno
+# Rota para cadastrar um novo aluno (ROTA 2)
 @app.route('/alunos', methods=['POST'])
 def add_aluno():
     data = request.get_json()
     nome = data['nome']
     idade = data['idade']
     curso_id = data['curso_id']
+
+    if request.method == 'POST':
+        curso_id =str(request.form['curso_id'])
     
     curso = cursos_table.get(doc_id=curso_id)
     if not curso:
@@ -87,7 +93,7 @@ def add_aluno():
     return jsonify({'aluno_id': aluno_id}), 201
 #━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-# Rota para atualizar um aluno por ID
+# Rota para atualizar um aluno por ID (ROTA 3)
 @app.route('/alunos/<int:aluno_id>', methods=['PUT'])
 def update_aluno(aluno_id):
     data = request.get_json()
@@ -101,7 +107,7 @@ def update_aluno(aluno_id):
     return jsonify({'message': 'Aluno atualizado com sucesso'}), 200
 #━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-# Rota para excluir um aluno por ID
+# Rota para excluir um aluno por ID (ROTA 4)
 @app.route('/alunos/<int:aluno_id>', methods=['DELETE'])
 def delete_aluno(aluno_id):
     alunos_table.remove(doc_ids=[aluno_id])
@@ -109,14 +115,14 @@ def delete_aluno(aluno_id):
     return '', 204
 #━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-# Rota para consultar todos os cursos
+# Rota para consultar todos os cursos (ROTA 5)
 @app.route('/cursos', methods=['GET'])
 def get_cursos():
     cursos = cursos_table.all()
     return jsonify(cursos)
 #━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-# Rota para consultar um curso por ID
+# Rota para consultar um curso por ID (ROTA 6)
 @app.route('/cursos/<int:curso_id>', methods=['GET'])
 def get_curso(curso_id):
     curso = cursos_table.get(doc_id=curso_id)
@@ -126,7 +132,7 @@ def get_curso(curso_id):
         return jsonify({'error': 'Curso não encontrado'}), 404
 #━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-# Rota para cadastrar um novo curso
+# Rota para cadastrar um novo curso (ROTA 7)
 @app.route('/cursos', methods=['POST'])
 def add_curso():
     data = request.get_json()
@@ -139,7 +145,7 @@ def add_curso():
     return jsonify({'curso_id': curso_id}), 201
 #━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-# Rota para atualizar um curso por ID
+# Rota para atualizar um curso por ID (ROTA 8)
 @app.route('/cursos/<int:curso_id>', methods=['PUT'])
 def update_curso(curso_id):
     data = request.get_json()
@@ -151,7 +157,7 @@ def update_curso(curso_id):
     return jsonify({'message': 'Curso atualizado com sucesso'}), 200
 #━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-# Rota para excluir um curso por ID
+# Rota para excluir um curso por ID (ROTA 9)
 @app.route('/cursos/<int:curso_id>', methods=['DELETE'])
 def delete_curso(curso_id):
     cursos_table.remove(doc_ids=[curso_id])
@@ -160,7 +166,7 @@ def delete_curso(curso_id):
     return '', 204
 #━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-# Rota para marcar presença de um aluno em uma aula
+# Rota para marcar presença de um aluno em uma aula (ROTA 10)
 @app.route('/presenca', methods=['POST'])
 def marcar_presenca():
     data = request.get_json()
@@ -180,7 +186,7 @@ def marcar_presenca():
     return jsonify({'message': 'Presença registrada com sucesso'}), 201
 #━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-# Rota para gerar relatório de presença em formato Excel
+# Rota para gerar relatório de presença em formato Excel (ROTA 11)
 @app.route('/presenca/relatorio', methods=['GET'])
 def gerar_relatorio_presenca():
     data = []

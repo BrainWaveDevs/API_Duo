@@ -4,243 +4,100 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/style.css">
     <title>API GXTCH</title>
 </head>
 <body>
+    <!-- Embora nao seja uma boa pratica, foi o jeito mais funcional do projeto ficar no ar
+    (css inline) -->
+
     <style>
         body{
     font-family: Arial, Helvetica, sans-serif;
     background-image: linear-gradient(45deg, #7300ff, #51E8F4);
-}
+    }
     </style>
-    <h1>Alunos</h1>
-    <h2>Consultar todos os alunos</h2>
-    <button onclick="getAlunos()">Consultar</button>
-    <p id="alunos"></p>
+    
+</body>
+<h1>Alunos</h1>
+<!-- CONSULTA GERAL DE ALUNOS -->
+<h2>Consultar todos os alunos</h2>
+<button onclick="getAlunos()">Consultar</button>
+<p id="alunos"></p>
 
-    <h2>Consultar aluno por ID</h2>
-    <label for="alunoId">ID do Aluno:</label>
-    <input type="number" id="alunoId">
-    <button onclick="getAluno()">Consultar</button>
-    <p id="aluno"></p>
+<!-- CONSULTA DE ALUNO (PRIMEIRA ROTA) -->
+<h2>Consultar aluno por ID</h2>
+<label for="alunoId">ID do Aluno:</label>
+<input type="number" id="alunoId">
+<button onclick="getAluno()">Consultar</button>
+<p id="aluno"></p>
 
-    <h2>Cadastrar novo aluno</h2>
-    <label for="nome">Nome:</label>
-    <input type="text" id="nome">
-    <br>
-    <label for="idade">Idade:</label>
-    <input type="number" id="idade">
-    <br>
-    <label for="cursoId">ID do Curso:</label>
-    <input type="number" id="cursoId">
-    <button onclick="addAluno()">Cadastrar</button>
+<!-- CADASTRO DE ALUNO (SEGUNDA ROTA) -->
+<h2>Cadastrar novo aluno</h2>
+<label for="nome">Nome:</label>
+<input type="text" id="nome">
+<br>
+<label for="idade">Idade:</label>
+<input type="number" id="idade">
+<br>
+<label for="cursoId">ID do Curso:</label>
+<input type="number" id="cursoId">
+<button onclick="addAluno()">Cadastrar</button>
 
-    <h2>Atualizar aluno por ID</h2>
-    <label for="alunoIdUpdate">ID do Aluno:</label>
-    <input type="number" id="alunoIdUpdate">
-    <br>
-    <label for="nomeUpdate">Nome:</label>
-    <input type="text" id="nomeUpdate">
-    <br>
-    <label for="idadeUpdate">Idade:</label>
-    <input type="number" id="idadeUpdate">
-    <br>
-    <label for="cursoIdUpdate">ID do Curso:</label>
-    <input type="number" id="cursoIdUpdate">
-    <button onclick="updateAluno()">Atualizar</button>
+<!-- ATUALIZAR ALUNO POR ID (TERCEIRA ROTA) -->
+<h2>Atualizar aluno por ID</h2>
+<label for="alunoIdUpdate">ID do Aluno:</label>
+<input type="number" id="alunoIdUpdate">
+<br>
+<label for="nomeUpdate">Nome:</label>
+<input type="text" id="nomeUpdate">
+<br>
+<label for="idadeUpdate">Idade:</label>
+<input type="number" id="idadeUpdate">
+<br>
+<label for="cursoIdUpdate">ID do Curso:</label>
+<input type="number" id="cursoIdUpdate">
+<button onclick="updateAluno()">Atualizar</button>
 
-    <h2>Excluir aluno por ID</h2>
-    <label for="alunoIdDelete">ID do Aluno:</label>
-    <input type="number" id="alunoIdDelete">
-    <button onclick="deleteAluno()">Excluir</button>
+<!-- EXCLUIR ALUNO POR ID (QUARTA ROTA) -->
+<h2>Excluir aluno por ID</h2>
+<label for="alunoIdDelete">ID do Aluno:</label>
+<input type="number" id="alunoIdDelete">
+<button onclick="deleteAluno()">Excluir</button>
 
-    <h1>Cursos</h1>
-    <h2>Consultar todos os cursos</h2>
-    <button onclick="getCursos()">Consultar</button>
-    <p id="cursos"></p>
+<h1>Cursos</h1>
 
-    <h2>Consultar curso por ID</h2>
-    <label for="cursoId">ID do Curso:</label>
-    <input type="number" id="cursoId">
-    <button onclick="getCurso()">Consultar</button>
-    <p id="curso"></p>
+<!-- CONSULTAR TODOS OS CURSOS (QUINTA ROTA) -->
+<h2>Consultar todos os cursos</h2>
+<button onclick="getCursos()">Consultar</button>
+<p id="cursos"></p>
 
-    <h2>Cadastrar novo curso</h2>
-    <label for="nomeCurso">Nome:</label>
-    <input type="text" id="nomeCurso">
-    <br>
-    <label for="codigoCurso">Código:</label>
-    <input type="text" id="codigoCurso">
-    <button onclick="addCurso()">Cadastrar</button>
+<!-- CONSULTAR CURSO POR ID (SEXTA ROTA)-->
+<h2>Consultar curso por ID</h2>
+<label for="cursoId">ID do Curso:</label>
+<input type="number" id="cursoId">
+<button onclick="getCurso()">Consultar</button>
+<p id="curso"></p>
 
-    <script>
-        // Função para fazer uma requisição GET para consultar todos os alunos
-        function getAlunos() {
-            fetch('/alunos', {
-                method: 'GET'
-            })
-            .then(response => response.json())
-            .then(data => {
-                document.getElementById('alunos').innerText = JSON.stringify(data);
-            })
-            .catch(error => console.error('Erro:', error));
-        }
+<!-- CADASTRAR UM NOVO CURSO (SETIMA ROTA) -->
+<h2>Cadastrar novo curso</h2>
+<label for="nomeCurso">Nome:</label>
+<input type="text" id="nomeCurso">
+<br>
+<label for="codigoCurso">Código:</label>
+<input type="text" id="codigoCurso">
+<button onclick="addCurso()">Cadastrar</button>
+<p id="cadastro"></p>
 
-        // Função para fazer uma requisição GET para consultar um aluno por ID
-        function getAluno() {
-            let alunoId = document.getElementById('alunoId').value;
-            fetch(`/alunos/${alunoId}`, {
-                method: 'GET'
-            })
-            .then(response => response.json())
-            .then(data => {
-                document.getElementById('aluno').innerText = JSON.stringify(data);
-            })
-            .catch(error => console.error('Erro:', error));
-        }
+<!-- ATUALIZAR UM CURSO POR ID (oitava ROTA) -->
 
-        // Função para fazer uma requisição POST para cadastrar um novo aluno
-        function addAluno() {
-            let nome = document.getElementById('nome').value;
-            let idade = document.getElementById('idade').value;
-            let cursoId = document.getElementById('cursoId').value;
-            let aluno = {
-                nome: nome,
-                idade: idade,
-                curso_id: cursoId
-            };
-            fetch('/alunos', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(aluno)
-            })
-            .then(response => response.json())
-            .then(data => {
-                document.getElementById('alunos').innerText = JSON.stringify(data);
-            })
-            .catch(error => console.error('Erro:', error));
-        }
 
-        // Função para fazer uma requisição PUT para atualizar um aluno por ID
-        function updateAluno() {
-            let alunoId = document.getElementById('alunoIdUpdate').value;
-            let nome = document.getElementById('nomeUpdate').value;
-            let idade = document.getElementById('idadeUpdate').value;
-            let cursoId = document.getElementById('cursoIdUpdate').value;
-            let aluno = {
-                nome: nome,
-                idade: idade,
-                curso_id: cursoId
-            };
-            fetch(`/alunos/${alunoId}`, {
-                method: 'PUT',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(aluno)
-            })
-            .then(response => response.json())
-            .then(data => {
-                document.getElementById('aluno').innerText = JSON.stringify(data);
-            })
-            .catch(error => console.error('Erro:', error));
-        }
+<!-- EXCLUIR CURSO POR ID (NONA ROTA) -->
 
-        // Função para fazer uma requisição DELETE para excluir um aluno por ID
-        function deleteAluno() {
-            let alunoId = document.getElementById('alunoIdDelete').value;
-            fetch(`/alunos/${alunoId}`, {
-                method: 'DELETE'
-            })
-            .then(response => response.json())
-            .then(data => {
-                document.getElementById('aluno').innerText = JSON.stringify(data);
-            })
-            .catch(error => console.error('Erro:', error));
-        }
 
-        // Função para fazer uma requisição GET para consultar todos os cursos
-        function getCursos() {
-            fetch('/cursos', {
-                method: 'GET'
-            })
-            .then(response => response.json())
-            .then(data => {
-                document.getElementById('cursos').innerText = JSON.stringify(data);
-            })
-            .catch(error => console.error('Erro:', error));
-        }
+<!-- PRESENCA DE ALUNO (DECIMA ROTA) -->
 
-        // Função para fazer uma requisição GET para consultar um curso por ID
-        function getCurso() {
-            let cursoId = document.getElementById('cursoId').value;
-            fetch(`/cursos/${cursoId}`, {
-                method: 'GET'
-            })
-            .then(response => response.json())
-            .then(data => {
-                document.getElementById('curso').innerText = JSON.stringify(data);
-            })
-            .catch(error => console.error('Erro:', error));
-        }
 
-        // Função para fazer uma requisição POST para cadastrar um novo curso
-        function addCurso() {
-            let nome = document.getElementById('nome').value;
-            let duracao = document.getElementById('duracao').value;
-            let curso = {
-                nome: nome,
-                duracao: duracao
-            };
-            fetch('/cursos', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(curso)
-            })
-            .then(response => response.json())
-            .then(data => {
-                document.getElementById('cursos').innerText = JSON.stringify(data);
-            })
-            .catch(error => console.error('Erro:', error));
-        }
+<!-- RELATORIO DE PRESENCA EXCEL (DECIMA PRIMEIRA ROTA) -->
 
-        // Função para fazer uma requisição PUT para atualizar um curso por ID
-        function updateCurso() {
-            let cursoId = document.getElementById('cursoIdUpdate').value;
-            let nome = document.getElementById('nomeUpdate').value;
-            let duracao = document.getElementById('duracaoUpdate').value;
-            let curso = {
-                nome: nome,
-                duracao: duracao
-            };
-            fetch(`/cursos/${cursoId}`, {
-                method: 'PUT',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(curso)
-            })
-            .then(response => response.json())
-            .then(data => {
-                document.getElementById('curso').innerText = JSON.stringify(data);
-            })
-            .catch(error => console.error('Erro:', error));
-        }
 
-        // Função para fazer uma requisição DELETE para excluir um curso por ID
-        function deleteCurso() {
-            let cursoId = document.getElementById('cursoIdDelete').value;
-            fetch(`/cursos/${cursoId}`, {
-                method: 'DELETE'
-            })
-            .then(response => response.json())
-            .then(data => {
-                document.getElementById('curso').innerText = JSON.stringify(data);
-            })
-            .catch(error => console.error('Erro:', error));
-        }
+</html>
