@@ -79,7 +79,7 @@ def add_aluno():
     nome = data['nome']
     idade = data['idade']
     curso_id = data['curso_id']
-    
+    #http://127.0.0.1:5000
     curso = cursos_table.get(doc_id=curso_id)
     if not curso:
         return jsonify({'error': 'Curso não encontrado'}), 404
