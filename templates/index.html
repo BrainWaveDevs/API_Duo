@@ -1,30 +1,91 @@
-
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>❮API -- TCHELOGX❯</title>
-    <link rel="stylesheet" href="css/style.css">
+    <title>API GXTCH</title>
 </head>
 <body>
-    <fieldset>
-    <div class="teste">
-        <form method="POST">
-            <input type="text" name="nome" placeholder="Nome"/>
-            <br><br>  
-            <br><br>
-            <legend>Estado de presença</legend>
-            <br><br>
-            <input type="checkbox" id="scales" name="scales" checked>
-            <label for="scales">Presente</label>
-            <input type="checkbox" id="horns" name="horns">
-            <label for="horns">Falta</label>
-            <br><br>
-            <button type="submit">Enviar</button>
-        </form>
-    </div>
-</fieldset> 
+    <!-- Embora nao seja uma boa pratica, foi o jeito mais funcional do projeto ficar no ar
+    (css inline) -->
+
+    <style>
+        body{
+    font-family: Arial, Helvetica, sans-serif;
+    background-image: linear-gradient(45deg, #7300ff, #51E8F4);
+    }
+    
+    h1{
+        text-align: center;
+    }
+
+    h2{
+    color:  #000000;
+    font-size: 1.5em;
+    margin-top: 0;
+    font-size: 1.2em;
+    line-height: 1.5;
+    }
+
+    #centralizar_botao{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    </style>
+    
 </body>
+<h1>Alunos</h1>
+<!-- CONSULTA GERAL DE ALUNOS -->
+<h2>Consultar todos os alunos</h2>
+<button onclick="getAlunos()">Consultar</button>
+<p id="alunos"></p>
+<br>
+
+<!-- CONSULTA DE ALUNO (PRIMEIRA ROTA) -->
+<h2>Consultar aluno por ID</h2>
+<label for="alunoId">ID do Aluno:</label>
+<input id= "centralizar_botao" type="number" id="alunoId">
+<button onclick="getAluno()">Consultar</button>
+<p id="aluno"></p>
+<br>
+
+<!-- CADASTRO DE ALUNO (SEGUNDA ROTA) -->
+<h2>Cadastrar novo aluno</h2>
+<label for="nome">Nome:</label>
+<input id= "centralizar_botao" type="text" id="nome">
+<br>
+<label for="idade">Idade:</label>
+<input id= "centralizar_botao" type="number" id="idade">
+<br>
+<label for="cursoId">ID do Curso:</label>
+<input id= "centralizar_botao" type="number" id="cursoId">
+<button onclick="addAluno()">Cadastrar</button>
+<br>
+
+<!-- ATUALIZAR ALUNO POR ID (TERCEIRA ROTA) -->
+<h2>Atualizar aluno por ID</h2>
+<label for="alunoIdUpdate">ID do Aluno:</label>
+<input id= "centralizar_botao" type="number" id="alunoIdUpdate">
+<br>
+<label for="nomeUpdate">Nome:</label>
+<input id= "centralizar_botao" type="text" id="nomeUpdate">
+<br>
+<label for="idadeUpdate">Idade:</label>
+<input id= "centralizar_botao" type="number" id="idadeUpdate">
+<br>
+<label for="cursoIdUpdate">ID do Curso:</label>
+<input id= "centralizar_botao" type="number" id="cursoIdUpdate">
+<button onclick="updateAluno()">Atualizar</button>
+<br>
+
+<!-- EXCLUIR ALUNO POR ID (QUARTA ROTA) -->
+<h2>Excluir aluno por ID</h2>
+<label for="alunoIdDelete">ID do Aluno:</label>
+<input id= "centralizar_botao" type="number" id="alunoIdDelete">
+<button onclick="deleteAluno()">Excluir</button>
+<br>
+
+
 </html>
